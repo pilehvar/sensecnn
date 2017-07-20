@@ -1,2 +1,2 @@
 # sensecnn
-Integrating word senses into CNN text classifier
+Integrating word senses into downstream NLP applications
