@@ -18,7 +18,6 @@ import h5py
 import argparse
 import os
 
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 class model():
 
@@ -36,8 +35,8 @@ class model():
         self.dataset_id = args.dataset_id
         self.num_classes = args.num_classes
         self.static_embeddings =  args.static
-        self.use_embeddings = args.emb
         self.emb_path = args.embpath
+	self.maxf = args.vocabsize
 
         abspath = os.path.abspath(__file__)
         dname = os.path.dirname(abspath)
@@ -99,20 +98,19 @@ class model():
     def evaluate(self):
         settings = { 'dict':'data/'+self.dataset+'/'+ self.dataset_id + '.dict.pkl',
                      'data':'data/'+self.dataset+'/'+ self.dataset_id +'.pkl',
-                     'max_features':50000,
                      'filter_length':8,
                      'pool_length':4,
                      'nb_filter':128,
                      'lstm_output_size':32,
                      'batch_size':32,
                      'nb_epoch':20,
-                     'folds':5
+                     'folds':10
                     }
 
 
         print('Loading data...')
 
-        all_data = dataset.load_data(n_words=settings['max_features'], path=settings['data'],
+        all_data = dataset.load_data(n_words=self.maxf, path=settings['data'],
                        valid_portion=0.0)
 
         traind, validd, testd = all_data
@@ -121,9 +119,9 @@ class model():
 
         scores = []
         if len(testd[1]) == 0:  # if no test data is dedicated
-            print("No test set: running cross-validation.")
+            print("No test set found: running cross-validation.")
             for i in range(settings['folds']):
-                print("[Running fold"+str(i+1)+"]")
+                print("[Running fold "+str(i+1)+"]")
                 # get the data for this fold
                 this_fold_data = dataset.fold_data(traind, settings['folds'], i+1)
                 this_fold_id = self.dataset + '.' + self.dataset_id + self.run_id + ".p" + str(i+1)
@@ -164,20 +162,19 @@ class model():
         print('X_train shape:', X_train.shape)
         print('X_test shape:', X_test.shape)
 
-        print(self.emb_path)
-
-        print('Build model...')
+	if len(self.emb_path) > 0:
+            print("Loading vectors from: " + self.emb_path)
 
         print("Size of index:",len(data_w2index))
 
         model = Sequential()
 
-        if self.use_embeddings:
+        if len(self.emb_path) > 0:
             W = self.get_embeddings(self.emb_path, data_w2index)
             print("Size of W:",W.shape[0],W.shape[1])
-            model.add(Embedding(output_dim=W.shape[1], input_dim=W.shape[0], weights=[W], trainable=(not self.static)))
+            model.add(Embedding(output_dim=W.shape[1], input_dim=W.shape[0], weights=[W], trainable=(not self.static_embeddings)))
         else:
-            model.add(Embedding(settings['max_features'], self.embedding_size, input_length=self.maxlen))
+            model.add(Embedding(self.maxf, self.embedding_size, input_length=self.maxlen))
 
         model.add(Dropout(0.5))
         model.add(Conv1D(filters=settings['nb_filter'],
@@ -190,17 +187,18 @@ class model():
 
         model.add(Dense(self.num_classes))
         model.add(Activation('sigmoid'))
-        model.compile(loss=losses.categorical_crossentropy, optimizer=optimizers.Adamax(), metrics=['accuracy'])
+        model.compile(loss=losses.categorical_crossentropy, optimizer=optimizers.Adam(), metrics=['accuracy'])
 
-        log_name = "models/"+log_id+'.hdf5'
-        checkpointer = ModelCheckpoint(filepath=log_name, verbose=1, save_best_only=True, monitor='val_acc', mode='max')
-        earlystopper = EarlyStopping(monitor='val_acc', patience=5, verbose=0, mode='auto')
+        #log_name = "models/"+log_id+'.hdf5'
+        #checkpointer = ModelCheckpoint(filepath=log_name, verbose=1, save_best_only=True, monitor='val_acc', mode='max')
+        #earlystopper = EarlyStopping(monitor='val_acc', patience=5, verbose=0, mode='auto')
 
         print('Train...')
-        model.fit(X_train, y_train, batch_size=settings['batch_size'], epochs=settings['nb_epoch'],
-                  validation_split=0.1, callbacks=[checkpointer,earlystopper])
+       # model.fit(X_train, y_train, batch_size=settings['batch_size'], epochs=settings['nb_epoch'],
+       #           validation_split=0.1, callbacks=[checkpointer])
 
-        model.load_weights(log_name)
+	model.fit(X_train, y_train, batch_size=settings['batch_size'], epochs=settings['nb_epoch'])
+        #model.load_weights(log_name)
         acc = model.evaluate(X_test, y_test, batch_size=settings['batch_size'])
 
         predictions = model.predict(X_test, batch_size=settings['batch_size'])
@@ -218,10 +216,10 @@ if __name__ == "__main__":
     parser.add_argument('num_classes', type=int, help='number of classes')
 
     parser.add_argument('--run_id', default='', help='identifier of this run')
-    parser.add_argument('--emb', type=bool, default=False, help='if initialized with embeddings')
-    parser.add_argument('--embpath', help='path to embeddings; must be set if emb is true')
+    parser.add_argument('--embpath', default='',  help='path to embeddings; must be set if emb is true')
     parser.add_argument('--embsize', metavar='d', default=300, type=int, help='size of input embeddings')
     parser.add_argument('--maxlen', metavar='l', default=1000, type=int, help='maximum length of input sequence')
+    parser.add_argument('--vocabsize', metavar='l', default=20000, type=int, help='size of the vocabulary')
     parser.add_argument('--static', type=bool, default=False, help='static embeddings')
 
     args = parser.parse_args()
