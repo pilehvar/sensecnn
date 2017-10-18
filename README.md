@@ -20,3 +20,11 @@ python sentiment_analysis/__main__.exp.py PL04 supersense_wn
 python sentiment_analysis/__main__.exp.py PL04 bn
 python sentiment_analysis/__main__.exp.py PL04 supersense_bn
 ```
+
+# Datasets
+
+[RTC](https://drive.google.com/drive/folders/0Bz40_IukD5qDdnlGSTl5LW4wcVE?usp=sharing)
+
+# Embeddings
+
+
