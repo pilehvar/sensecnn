@@ -1,6 +1,10 @@
 # sensecnn
 Integrating word senses into downstream NLP applications
 
+## Instructions
+
+The followings are commands to get started:
+
 ```
 python topic_categorization/__main__.py bbc word 5
 python topic_categorization/__main__.py bbc supersense_wn 5
