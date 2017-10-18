@@ -23,7 +23,18 @@ python sentiment_analysis/__main__.exp.py PL04 supersense_bn
 
 # Datasets
 
-[RTC](https://drive.google.com/drive/folders/0Bz40_IukD5qDdnlGSTl5LW4wcVE?usp=sharing)
+## Polarity detection:
+
+* [RTC](https://drive.google.com/drive/folders/0Bz40_IukD5qDdnlGSTl5LW4wcVE?usp=sharing)
+* [PL04](https://drive.google.com/drive/folders/0Bz40_IukD5qDZUhVbXRHeTcwTFU?usp=sharing)
+* [IMDB](https://drive.google.com/drive/folders/0Bz40_IukD5qDRDJ5NHhSUTBEUnc?usp=sharing)
+
+## Topic categorization
+
+* [Ohsumed](https://drive.google.com/drive/folders/0Bz40_IukD5qDcmVKcm5rNVA1LWs?usp=sharing)
+* [BBC](https://drive.google.com/drive/folders/0Bz40_IukD5qDX3Y2c3RvRWhPenM?usp=sharing)
+* [20K](https://drive.google.com/drive/folders/0Bz40_IukD5qDbURfbEdTUnZELWc?usp=sharing)
+
 
 # Embeddings
 
