@@ -1,5 +1,5 @@
 # sensecnn
-Integrating word senses into downstream NLP applications
+### Integrating word senses into downstream NLP applications
 
 ## Instructions
 
@@ -54,3 +54,21 @@ Please note that these embeddings live in the same semantic space of [Word2vec t
 * [WordNet supersense mappings](https://drive.google.com/file/d/0B-ZmZ8m4R_BaNWFBaEhIMmRha1U/view?usp=sharing)
 
 
+# More information
+* Please read the paper for more information.
+
+## Citation:
+
+```
+@InProceedings{pilehvar-EtAl:2017:Long,
+  author    = {Pilehvar, Mohammad Taher  and  Camacho-Collados, Jose  and  Navigli, Roberto  and  Collier, Nigel},
+  title     = {Towards a Seamless Integration of Word Senses into Downstream NLP Applications},
+  booktitle = {Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  month     = {July},
+  year      = {2017},
+  address   = {Vancouver, Canada},
+  publisher = {Association for Computational Linguistics},
+  pages     = {1857--1869},
+  url       = {http://aclweb.org/anthology/P17-1170}
+}
+```
