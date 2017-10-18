@@ -1,5 +1,7 @@
 # sensecnn
 ### Integrating word senses into downstream NLP applications
+This page provides the code and datasets of the ACL 2017 paper:
+*Towards a Seamless Integration of Word Senses into Downstream NLP Applications*
 
 ## Instructions
 
@@ -55,7 +57,7 @@ Please note that these embeddings live in the same semantic space of [Word2vec t
 
 
 # More information
-* Please read the paper for more information.
+* Please read the [paper](http://www.aclweb.org/anthology/P/P17/P17-1170.pdf) for more information.
 
 ## Citation:
 
@@ -71,4 +73,12 @@ Please note that these embeddings live in the same semantic space of [Word2vec t
   pages     = {1857--1869},
   url       = {http://aclweb.org/anthology/P17-1170}
 }
+```
+
+## Contact us
+Have you had any questions, please contact us at 
+
+```
+mp792@cam.ac.uk
+collados@di.uniroma1.it
 ```
