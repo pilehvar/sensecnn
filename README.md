@@ -21,7 +21,7 @@ python sentiment_analysis/__main__.exp.py PL04 bn
 python sentiment_analysis/__main__.exp.py PL04 supersense_bn
 ```
 
-# Datasets
+# Datasets (compiled)
 
 ## Polarity detection:
 
@@ -37,5 +37,10 @@ python sentiment_analysis/__main__.exp.py PL04 supersense_bn
 
 
 # Embeddings
+
+* [Deconf WordNet embeddings](https://drive.google.com/a/di.uniroma1.it/file/d/0Bz40_IukD5qDbzJFSmppN0Y2djg/view?usp=sharing)
+* [Nasari Deconf embeddings (.bin)](https://drive.google.com/a/di.uniroma1.it/file/d/0Bz40_IukD5qDZ3lsemhSVTBLeFU/view?usp=sharing)
+* [Nasari Deconf embeddings (.txt)](https://drive.google.com/a/di.uniroma1.it/file/d/0Bz40_IukD5qDLWdCNUJhQ3gtMzA/view?usp=sharing)
+
 
 
