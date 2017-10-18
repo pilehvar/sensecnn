@@ -42,6 +42,7 @@ python sentiment_analysis/__main__.exp.py PL04 supersense_bn
 * [Nasari Deconf embeddings (.bin)](https://drive.google.com/a/di.uniroma1.it/file/d/0Bz40_IukD5qDZ3lsemhSVTBLeFU/view?usp=sharing)
 * [Nasari Deconf embeddings (.txt)](https://drive.google.com/a/di.uniroma1.it/file/d/0Bz40_IukD5qDLWdCNUJhQ3gtMzA/view?usp=sharing)
 
+Please note that these embeddings live in the same semantic space of [Word2vec trained on the Google News dataset](https://code.google.com/archive/p/word2vec/). 
 
 # Mapping files
 
