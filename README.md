@@ -43,4 +43,9 @@ python sentiment_analysis/__main__.exp.py PL04 supersense_bn
 * [Nasari Deconf embeddings (.txt)](https://drive.google.com/a/di.uniroma1.it/file/d/0Bz40_IukD5qDLWdCNUJhQ3gtMzA/view?usp=sharing)
 
 
+# Mapping files
+
+* [BabelNet supersense mappings](https://drive.google.com/a/di.uniroma1.it/file/d/0Bz40_IukD5qDbTNQWGxFdDdZNnM/view?usp=sharing)
+* [WordNet supersense mappings](https://drive.google.com/file/d/0B-ZmZ8m4R_BaNWFBaEhIMmRha1U/view?usp=sharing)
+
 
